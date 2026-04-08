@@ -1,0 +1,10 @@
+{
+  "toDoList.sol": {
+    "__sources__": {
+      "toDoList.sol": {
+        "content": "//SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ToDoList {\r\n\r\n    struct Task {\r\n        string content;\r\n        bool completed;\r\n    }\r\n\r\n    mapping (address => Task[]) public userTasks;\r\n\r\n    function createTask(string memory _content) public {\r\n        userTasks[msg.sender].push(Task(_content,false));\r\n    }\r\n\r\n    function toggleCompleted(uint taskIndex) public {\r\n        require(taskIndex < userTasks[msg.sender].length , \"Bhai Valid Task access kar\");\r\n        userTasks[msg.sender][taskIndex].completed = !userTasks[msg.sender][taskIndex].completed;\r\n    }\r\n\r\n    function getTasksCount() public view returns(uint){\r\n        return userTasks[msg.sender].length;\r\n    }\r\n}",
+        "file": "toDoList.sol"
+      }
+    }
+  }
+}
